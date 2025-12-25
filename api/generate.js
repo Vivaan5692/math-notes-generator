@@ -35,7 +35,7 @@ export default async function handler(req, res) {
           }
         ],
         inferenceConfig: {
-          maxTokens: 2500,
+          maxTokens: 5000,
           temperature: 0.7,
           topP: 0.9
         }
