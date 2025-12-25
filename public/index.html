@@ -52,7 +52,7 @@
       outputEl.innerHTML = "<p>Generating detailed notes... (this may take 10–30 seconds)</p>";
 
       try {
-        const response = await fetch("/generate", {
+        const response = await fetch("/api/generate", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ prompt })
@@ -67,7 +67,6 @@
           content = `Error: ${data.error || "Unknown error"}\nDetails: ${data.details || ""}`;
         }
 
-        // Format text with paragraphs and line breaks
         const formatted = content
           .replace(/\n\n+/g, '</p><p>')
           .replace(/\n/g, '<br>')
@@ -79,7 +78,6 @@
         outputEl.innerHTML = `<p>Connection error: ${err.message}</p>`;
       }
 
-      // Trigger MathJax rendering
       if (window.MathJax) {
         MathJax.typesetPromise([outputEl]).catch(err => console.error("MathJax error:", err));
       }
