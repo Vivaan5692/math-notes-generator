@@ -25,7 +25,7 @@
     #output { 
       margin-top: 30px; padding: 30px; background: white; border: 1px solid #ddd; border-radius: 10px; 
       font-size: 17px; line-height: 1.8; min-height: 200px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
-      overflow-y: auto; max-height: 80vh; text-align: left;
+      overflow-y: auto; max-height: 80vh; 
     }
     #output p { margin: 1em 0; }
     .loading { color: #777; font-style: italic; }
@@ -33,7 +33,7 @@
 </head>
 <body>
   <h1>Math Notes Generator</h1>
-  <p>Enter a math topic (e.g., quadratics, derivatives, trigonometry):</):</p>
+  <p>Enter a math topic (e.g., quadratics, derivatives, laws of indices):</p>
   <textarea id="prompt" rows="4" placeholder="e.g., quadratics"></textarea><br>
   <button id="generate">Generate Detailed Notes</button>
 
@@ -67,16 +67,16 @@
           content = `Error: ${data.error || "Unknown error"}\nDetails: ${data.details || ""}`;
         }
 
-        // Convert plain text with \n\n to proper paragraphs and <br>
+        // Format text with paragraphs and line breaks
         const formatted = content
-          .replace(/\n\n+/g, '</p><p>')   // Double newlines → new paragraph
-          .replace(/\n/g, '<br>')         // Single newline → line break
+          .replace(/\n\n+/g, '</p><p>')
+          .replace(/\n/g, '<br>')
           .trim();
 
         outputEl.innerHTML = `<p>${formatted}</p>`;
 
       } catch (err) {
-        outputEl.innerHTML = `<p>Connection error: ${err.message}<br>Make sure the backend is running on port 3000.</p>`;
+        outputEl.innerHTML = `<p>Connection error: ${err.message}</p>`;
       }
 
       // Trigger MathJax rendering
